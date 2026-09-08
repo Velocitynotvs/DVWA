@@ -1,28 +1,19 @@
-volumes:
-  dvwa:
-
-
-networks:
-  dvwa:
-
-
 services:
   dvwa:
-    build: .
-    image: ghcr.io/digininja/dvwa:latest
-    # Change `always` to `build` to build from local source
-    pull_policy: always
+    build:
+      context: .
+      dockerfile: Dockerfile.php74
+    image: dvwa-php74
     environment:
       - DB_SERVER=db
     depends_on:
       - db
-    # Uncomment the next 2 lines to serve local source
-    # volumes:
-    #   - ./:/var/www/html
+    volumes:
+      - ./:/var/www/html
     networks:
       - dvwa
     ports:
-      - 192.168.0.192:4280:80
+      - "192.168.0.192:4280:80"
     restart: unless-stopped
 
   db:
@@ -31,9 +22,15 @@ services:
       - MYSQL_ROOT_PASSWORD=dvwa
       - MYSQL_DATABASE=dvwa
       - MYSQL_USER=dvwa
-      - MYSQL_PASSWORD=p@ssw0rd
+      - MYSQL_PASSWORD=admin
     volumes:
       - dvwa:/var/lib/mysql
     networks:
       - dvwa
     restart: unless-stopped
+
+volumes:
+  dvwa:
+
+networks:
+  dvwa:
