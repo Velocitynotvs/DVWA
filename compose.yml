@@ -2,7 +2,7 @@ services:
   dvwa:
     build:
       context: .
-      dockerfile: Dockerfile.php74
+      dockerfile: Dockerfile
     image: dvwa-php74
     environment:
       - DB_SERVER=db
