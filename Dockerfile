@@ -8,7 +8,7 @@ WORKDIR /var/www/html
 
 RUN apt-get update \
  && export DEBIAN_FRONTEND=noninteractive \
- && apt-get install -y \
+ && apt-get install -y --no-install-recommends \
       zlib1g-dev \
       libpng-dev \
       libjpeg-dev \
@@ -17,7 +17,7 @@ RUN apt-get update \
       git \
       zip \
       unzip \
-      7zip \
+      p7zip-full \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
  && docker-php-ext-configure gd --with-jpeg --with-freetype \
