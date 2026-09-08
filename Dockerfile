@@ -1,4 +1,4 @@
-FROM docker.io/library/php:7.4-apache
+FROM php:7.4.33-apache-bullseye
 
 LABEL org.opencontainers.image.source=https://github.com/digininja/DVWA
 LABEL org.opencontainers.image.description="DVWA pre-built image."
